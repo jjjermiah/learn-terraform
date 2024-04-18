@@ -11,3 +11,13 @@ gke-terraform = { path = ".", editable = true }
 
 [tool.pixi.dependencies]
 terraform = ">=1.8.1,<1.9"
+
+[tool.pixi.tasks]
+
+# Terraform tasks
+tffmt = "terraform -chdir=terraform fmt"
+tfinit = { cmd = "terraform -chdir=terraform init", depends_on = ["tffmt"]}
+tfplan = { cmd = "terraform -chdir=terraform plan", depends_on = ["tfinit"]}
+tfapply = { cmd = "terraform -chdir=terraform apply", depends_on = ["tfinit"]}
+
+tfdestroy = "terraform -chdir=terraform destroy"
