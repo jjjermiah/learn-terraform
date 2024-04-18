@@ -1,5 +1,6 @@
 
 resource "google_container_cluster" "primary" {
+  project  = var.project_id
   name     = "${var.cluster_name}-gke"
   location = var.region
 
